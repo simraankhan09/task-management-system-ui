@@ -1,0 +1,33 @@
+.ant-input {
+  color: var(--text-color);
+  background-color: var(--input-background-color);
+  border-color: var(--input-border-color);
+  border-radius: var(--border-radius);
+  height: 40px;
+  font-size: var(--font-size-medium);
+
+  &:hover,
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    border-color: var(--ancent-color-1);
+  }
+}
+
+.ant-input-disabled {
+  color: var(--text-color) !important;
+  background-color: var(--input-background-color) !important;
+  border-color: var(--background-color-2) !important;
+}
+
+.ant-form {
+  color: var(--text-color);
+
+  &-item {
+    color: var(--text-color);
+  }
+
+  &-item-label > label {
+    color: var(--text-color) !important;
+  }
+}

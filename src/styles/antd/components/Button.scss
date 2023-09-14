@@ -1,0 +1,21 @@
+.ant-btn-primary {
+  color: var(--white);
+  background-color: var(--ancent-color-1);
+
+  &:hover {
+    background-color: var(--ancent-color-2) !important;
+  }
+
+  &:disabled {
+    border-color: var(--ancent-color-1);
+    opacity: 0.5;
+    color: var(--text-color);
+  }
+}
+
+.ant-btn {
+  padding: 3px var(--padding) !important;
+  border-radius: var(--border-radius-small) !important;
+  font-size: var(--font-size-small) !important;
+  height: 30px !important;
+}

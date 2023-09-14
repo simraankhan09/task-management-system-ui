@@ -1,0 +1,12 @@
+.ant-switch-checked {
+  background-color: var(--ancent-color-1) !important;
+}
+
+.ant-switch {
+  background-color: var(--ancent-color-2);
+
+  &:hover:not(.ant-switch-disabled) {
+    background-color: var(--ancent-color-2);
+    opacity: 0.7;
+  }
+}
