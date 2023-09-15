@@ -1,0 +1,39 @@
+.task-container {
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-1);
+  padding: var(--padding);
+  color: var(--text-color);
+  margin: 8px 10px;
+  min-height: 100px;
+  background-color: var(--background-color-2);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  .task-name-container {
+    text-align: justify;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--font-size-small);
+    margin-top: var(--margin);
+  }
+
+  .task-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .delete-btn {
+      color: var(--danger);
+
+      &:hover {
+        color: var(--danger);
+        opacity: 0.7;
+      }
+    }
+  }
+}

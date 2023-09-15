@@ -1,0 +1,24 @@
+.ant-notification {
+  color: var(--text-color);
+  font-size: var(--font-size-small) !important;
+
+  &-notice {
+    background: var(--modal-content-color) !important;
+
+    &-message,
+    &-description,
+    &-close {
+      color: var(--text-color) !important;
+    }
+
+    &-icon-info.anticon {
+      color: var(--info) !important;
+    }
+    &-icon-success.anticon {
+      color: var(--success) !important;
+    }
+    &-icon-error.anticon {
+      color: var(--danger) !important;
+    }
+  }
+}

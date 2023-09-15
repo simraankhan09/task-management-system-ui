@@ -3,7 +3,7 @@
   background-color: var(--input-background-color);
   border-color: var(--input-border-color);
   border-radius: var(--border-radius);
-  height: 40px;
+  height: 35px;
   font-size: var(--font-size-medium);
 
   &:hover,
@@ -18,6 +18,47 @@
   color: var(--text-color) !important;
   background-color: var(--input-background-color) !important;
   border-color: var(--background-color-2) !important;
+}
+
+.ant-select {
+  color: var(--text-color);
+
+  &:hover,
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    border-color: var(--ancent-color-1);
+  }
+
+  &-selector {
+    color: var(--text-color) !important;
+    background-color: var(--input-background-color) !important;
+    border: 1px solid var(--input-border-color) !important;
+    height: 35px !important;
+  }
+
+  &-arrow {
+    color: var(--text-color) !important;
+  }
+}
+
+.ant-select-dropdown {
+  color: var(--text-color);
+  background-color: var(--input-background-color);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-small);
+  padding: var(--padding);
+
+  .ant-select-item {
+    color: var(--text-color);
+    background-color: var(--input-background-color);
+  }
+
+  .ant-select-item-option-selected {
+    color: var(--text-color) !important;
+    background-color: var(--input-background-color) !important;
+    font-weight: var(--font-weight-medium);
+  }
 }
 
 .ant-form {

@@ -1,14 +1,13 @@
-import React, { FC, memo } from "react";
+import { memo, useContext } from "react";
 import { Switch, Button } from "antd";
-import { SkinOutlined, BulbOutlined } from "@ant-design/icons";
+import { FaRegMoon, FaSun } from "react-icons/fa6";
 
 import "./Header.scss";
+import { AppContext } from "../../context/AppContext";
 
-interface HeaderProps {
-  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export const Header = memo(() => {
+  const context = useContext(AppContext);
 
-export const Header: FC<HeaderProps> = memo(({ setVisible }) => {
   const handleThemeChange = () => {
     const theme = document.documentElement.getAttribute("data-theme");
     if (theme === "light") {
@@ -25,12 +24,16 @@ export const Header: FC<HeaderProps> = memo(({ setVisible }) => {
 
         <div className="header-btns">
           <Switch
-            checkedChildren={<BulbOutlined />}
-            unCheckedChildren={<SkinOutlined />}
+            checkedChildren={<FaRegMoon />}
+            unCheckedChildren={<FaSun />}
             onChange={handleThemeChange}
             title="Change theme"
           />
-          <Button type="primary" size="small" onClick={() => setVisible(true)}>
+          <Button
+            type="primary"
+            size="small"
+            onClick={() => context?.setVisibleTaskModal(true)}
+          >
             Create
           </Button>
         </div>
