@@ -8,6 +8,7 @@
   .ant-modal-content,
   .ant-modal-header {
     background-color: var(--background-color-1);
+    color: var(--text-color);
   }
 
   .ant-modal-content {
@@ -20,6 +21,16 @@
       .ant-modal-title {
         color: var(--text-color);
       }
+    }
+
+    .ant-modal-confirm-body > .anticon {
+      color: var(--warning);
+    }
+
+    .ant-modal-confirm-title,
+    .ant-modal-confirm-content,
+    .ant-modal-close {
+      color: var(--text-color);
     }
   }
 }

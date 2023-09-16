@@ -5,6 +5,12 @@
   flex-direction: column;
   padding: var(--padding-medium);
 
+  .empty-list-text {
+    text-align: center;
+    color: var(--ancent-color-1);
+    font-size: var(--font-size-medium);
+  }
+
   .heading {
     text-align: center;
     color: var(--ancent-color-1);

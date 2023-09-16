@@ -12,7 +12,9 @@ export const Header = memo(() => {
     const theme = document.documentElement.getAttribute("data-theme");
     if (theme === "light") {
       document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
     } else {
+      localStorage.setItem("theme", "light");
       document.documentElement.setAttribute("data-theme", "light");
     }
   };
@@ -32,7 +34,10 @@ export const Header = memo(() => {
           <Button
             type="primary"
             size="small"
-            onClick={() => context?.setVisibleTaskModal(true)}
+            onClick={() => {
+              context?.setTask(undefined);
+              context?.setVisibleTaskModal(true);
+            }}
           >
             Create
           </Button>

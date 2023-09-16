@@ -42,4 +42,14 @@ export class TaskService {
       `/task/update-task-status/task-id/${taskId}/task-status/${taskStatus}`
     );
   }
+
+  public async updateTask(payload: ITask): Promise<ITask> {
+    return await ApiUtil.update<ITask, ITask>("/task/update-task", payload);
+  }
+
+  public async deleteTaskById(taskId: number): Promise<{ message: string }> {
+    return await ApiUtil.delete<{ message: string }>(
+      `/task/delete-task/${taskId}`
+    );
+  }
 }

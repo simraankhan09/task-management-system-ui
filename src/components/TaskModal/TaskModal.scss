@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--row-gap-large);
+  gap: var(--row-gap-small);
 }
 
 .reset-btn {
@@ -31,4 +31,10 @@
     opacity: 0.7 !important;
     color: var(--white) !important;
   }
+}
+
+.modal-title {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 1px;
 }

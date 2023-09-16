@@ -156,17 +156,20 @@ export const Board: FC<BoardProps> = memo(({ taskList }) => {
     <div className="board-container">
       <DragDropContext onDragEnd={handleDragEnd}>
         <h2 className="heading">TMS BOARD</h2>
-
-        <div className="column-container">
-          {columns.map((col) => (
-            <Column
-              key={col.id}
-              id={col.id}
-              tasks={col.tasks}
-              title={col.title}
-            />
-          ))}
-        </div>
+        {!taskList.length ? (
+          <div className="empty-list-text">No task created yet!</div>
+        ) : (
+          <div className="column-container">
+            {columns.map((col) => (
+              <Column
+                key={col.id}
+                id={col.id}
+                tasks={col.tasks}
+                title={col.title}
+              />
+            ))}
+          </div>
+        )}
       </DragDropContext>
     </div>
   );

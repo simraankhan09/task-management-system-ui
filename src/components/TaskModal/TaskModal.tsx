@@ -1,24 +1,41 @@
 import { Modal, Form, Input, Select, Button } from "antd";
-import { FC, memo } from "react";
+import { FC, memo, useCallback, useContext, useEffect, useState } from "react";
 
 import "./TaskModal.scss";
 import {
+  ITask,
   ITaskAddResource,
   TaskPriorityLevel,
 } from "../../service/task-service/interface";
+import { AppContext } from "../../context/AppContext";
 
 interface TaskModalProps {
   visible: boolean;
   onCancel: () => void;
   onCreate: (values: ITaskAddResource) => void;
   isSubmitting: boolean;
+  onUpdate: (values: ITask) => void;
 }
 
 const { TextArea } = Input;
 
 export const TaskModal: FC<TaskModalProps> = memo(
-  ({ visible, onCancel, onCreate, isSubmitting }) => {
+  ({ visible, onCancel, onCreate, isSubmitting, onUpdate }) => {
+    const context = useContext(AppContext);
+
+    const [isFormChange, setIsFormChange] = useState(false);
+
     const [form] = Form.useForm<ITaskAddResource>();
+
+    useEffect(() => {
+      if (!context?.task) return;
+      const { taskName, taskDescription, taskPriority } = context.task;
+      form.setFieldsValue({
+        taskName,
+        taskDescription,
+        taskPriority,
+      });
+    }, [context?.task, form]);
 
     const taskPriorityOptions: { label: string; value: TaskPriorityLevel }[] = [
       { label: "Low", value: TaskPriorityLevel.LOW },
@@ -27,16 +44,38 @@ export const TaskModal: FC<TaskModalProps> = memo(
       { label: "Highest", value: TaskPriorityLevel.HIGHEST },
     ];
 
+    const getTitle = useCallback(() => {
+      if (!context?.task) return <div className="modal-title">Create Task</div>;
+
+      return isFormChange ? (
+        <div className="modal-title">
+          Update #{context.task.taskId} {context.task.taskName}
+        </div>
+      ) : (
+        <div className="modal-title">
+          #{context.task.taskId} {context.task.taskName}
+        </div>
+      );
+    }, [context?.task, isFormChange]);
+
     return (
       <Modal
         open={visible}
         width="80%"
         destroyOnClose
-        closable={false}
+        closable={true}
         footer={[]}
-        title="Create task"
+        title={getTitle()}
+        maskClosable={false}
+        onCancel={onCancel}
       >
-        <Form layout="vertical" form={form}>
+        <Form
+          layout="vertical"
+          form={form}
+          onValuesChange={(changeValue) => {
+            setIsFormChange(true);
+          }}
+        >
           <Form.Item
             label="Task name"
             name="taskName"
@@ -94,25 +133,37 @@ export const TaskModal: FC<TaskModalProps> = memo(
               onClick={async () => {
                 try {
                   const formValues = await form.validateFields();
+                  if (context?.task && isFormChange) {
+                    const values = {
+                      ...context.task,
+                      ...formValues,
+                    };
+                    onUpdate(values);
+                    return;
+                  }
                   onCreate(formValues);
                 } catch (error) {}
               }}
               loading={isSubmitting}
+              disabled={context?.task && !isFormChange}
             >
-              Create
+              {context?.task ? "Update" : "Create"}
             </Button>
             <Button
               className="reset-btn"
               type="primary"
               onClick={() => form.resetFields()}
-              disabled={isSubmitting}
+              disabled={isSubmitting || !!context?.task}
             >
               Reset
             </Button>
             <Button
               className="cancel-btn"
               type="primary"
-              onClick={onCancel}
+              onClick={() => {
+                context?.setTask(undefined);
+                onCancel();
+              }}
               disabled={isSubmitting}
             >
               Cancel

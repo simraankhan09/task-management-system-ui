@@ -1,0 +1,21 @@
+.ant-checkbox-wrapper {
+  color: var(--text-color);
+
+  .ant-checkbox,
+  .ant-checkbox-checked {
+    color: var(--text-color);
+  }
+
+  .ant-checkbox-checked:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+    background-color: var(--ancent-color-2) !important;
+  }
+
+  .ant-checkbox-inner::after {
+    border: 2px solid var(--ancent-color-1);
+  }
+
+  .ant-checkbox-inner {
+    border: 1px solid var(--ancent-color-2);
+    background-color: var(--background-color-1);
+  }
+}
