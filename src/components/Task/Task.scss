@@ -12,7 +12,7 @@
   flex-direction: column;
 
   .task-name-container {
-    text-align: justify;
+    text-align: center;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
@@ -20,6 +20,17 @@
     text-overflow: ellipsis;
     font-size: var(--font-size-small);
     margin-top: var(--margin);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .task-title-container {
+    text-align: justify;
+    font-size: var(--font-size-smaller);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .task-info-container {

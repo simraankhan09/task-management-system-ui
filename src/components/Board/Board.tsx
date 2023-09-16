@@ -1,4 +1,4 @@
-import { FC, memo, useState, useEffect } from "react";
+import { FC, memo, useState, useEffect, useContext } from "react";
 import {
   DragDropContext,
   DropResult,
@@ -9,6 +9,8 @@ import "./Board.scss";
 import { Column } from "../Column/Column";
 import { ITask, TaskStatus } from "../../service/task-service/interface";
 import { ServiceFactory } from "../../service/ServiceFactory";
+import { Button } from "antd";
+import { AppContext } from "../../context/AppContext";
 
 interface BoardProps {
   taskList: ITask[];
@@ -21,6 +23,8 @@ export interface IColumn {
 }
 
 export const Board: FC<BoardProps> = memo(({ taskList }) => {
+  const context = useContext(AppContext);
+
   const [todo, setTodo] = useState<ITask[]>([]);
   const [inProgress, setInProgress] = useState<ITask[]>([]);
   const [done, setDone] = useState<ITask[]>([]);
@@ -157,7 +161,18 @@ export const Board: FC<BoardProps> = memo(({ taskList }) => {
       <DragDropContext onDragEnd={handleDragEnd}>
         <h2 className="heading">TMS BOARD</h2>
         {!taskList.length ? (
-          <div className="empty-list-text">No task created yet!</div>
+          <div className="empty-list-container">
+            <div className="empty-text">No task created yet!</div>
+            <Button
+              type="primary"
+              onClick={() => {
+                context?.setTask(undefined);
+                context?.setVisibleTaskModal(true);
+              }}
+            >
+              Add a task
+            </Button>
+          </div>
         ) : (
           <div className="column-container">
             {columns.map((col) => (

@@ -91,6 +91,7 @@ export const Task: FC<TaskProps> = memo(({ task, index }) => {
           <div className="task-name-container" title={task.taskName}>
             {task.taskName}
           </div>
+          <div className="task-title-container">{task.taskDescription}</div>
           <div className="task-info-container">
             <div
               title={`${getPriotityTitle(task.taskPriority.toString())} level`}

@@ -5,10 +5,14 @@
   flex-direction: column;
   padding: var(--padding-medium);
 
-  .empty-list-text {
+  .empty-list-container {
     text-align: center;
     color: var(--ancent-color-1);
     font-size: var(--font-size-medium);
+
+    .empty-text {
+      margin-bottom: var(--margin);
+    }
   }
 
   .heading {
